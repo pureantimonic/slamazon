@@ -20,6 +20,8 @@ public class GUIScript : MonoBehaviour
 
     public AudioMixer audioMixer;
 
+    public DroneController droneContriller;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -127,7 +129,12 @@ public class GUIScript : MonoBehaviour
 
     public void SetVolume(float volume)
     {
-        Debug.Log(volume);
+        //Debug.Log(volume);
         audioMixer.SetFloat("Volume", volume);
+    }
+
+    public void SetMouseSensitivity(float sensitivity)
+    {
+        droneContriller.SetAngularSpeed(sensitivity/40 + 0.01F);
     }
 }
