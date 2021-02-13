@@ -5,8 +5,16 @@ using UnityEngine;
 public class PickupLocation : MonoBehaviour
 {
     private Package currentPackage;
+
+    [SerializeField] private GameObject packagePrefab;
+    [SerializeField] private Vector3 spawnPoint;
     // Start is called before the first frame update
     void Start()
+    {
+        
+    }
+
+    void SpawnPackage()
     {
         
     }

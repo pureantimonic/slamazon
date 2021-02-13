@@ -36,6 +36,7 @@ public class DroneController : MonoBehaviour
     private bool readyToFire;
     private float startFireTime;
     private float lookAngleY;
+    private Animator anim;
 
     private Rigidbody rbody;
     // Start is called before the first frame update
@@ -46,6 +47,7 @@ public class DroneController : MonoBehaviour
         initialRotation = modelTransform.localRotation;
         rbody = GetComponent<Rigidbody>();
         pickupHighlight.enabled = false;
+        anim = GetComponent<Animator>();
     }
 
 
@@ -89,7 +91,9 @@ public class DroneController : MonoBehaviour
 
     private void OnPrepFire(InputValue val)
     {
+        
         readyToFire = val.Get<float>() > 0;
+        anim.SetBool("IsPrepFire", readyToFire);
         if (readyToFire)
         {
             startFireTime = Time.time;
@@ -115,7 +119,7 @@ public class DroneController : MonoBehaviour
         float power = (Time.time - startFireTime);
         GameObject package = ReleasePackage();
         Rigidbody packBody = package.GetComponent<Rigidbody>();
-        packBody.AddForce(transform.forward * power * 10, ForceMode.Impulse);
+        packBody.AddForce(transform.forward * power * 50, ForceMode.Impulse);
 
 
     }

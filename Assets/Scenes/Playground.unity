@@ -5786,7 +5786,7 @@ Animator:
   m_GameObject: {fileID: 1632460868}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0fcdd3d3dc6fc9846bf3f5a8d862e32f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -6338,6 +6338,10 @@ PrefabInstance:
       propertyPath: destinationEffect
       value: 
       objectReference: {fileID: 75252585}
+    - target: {fileID: 979265994, guid: d020b38f87db43f42b7a33b1aacc947f, type: 3}
+      propertyPath: field of view
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 978834960204395461, guid: d020b38f87db43f42b7a33b1aacc947f, type: 3}
       propertyPath: m_Name
       value: DronePlayer
