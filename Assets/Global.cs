@@ -16,6 +16,8 @@ public class Global : MonoBehaviour
     public TextMeshProUGUI ScoreText;
 
     public List<Destination> destinations;
+
+    public GameObject[] Packages;
     // Start is called before the first frame update
     void Awake()
     {
@@ -45,6 +47,11 @@ public class Global : MonoBehaviour
         Score += Mathf.Max(0,score);
     }
 
+    public GameObject GetRandomPackage()
+    {
+        return Packages[Random.Range(0, Packages.Length)];
+    }
+    
     // Update is called once per frame
     void Update()
     {

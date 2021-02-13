@@ -5,13 +5,12 @@ using UnityEngine;
 public class PickupLocation : MonoBehaviour
 {
     private Package currentPackage;
-
-    [SerializeField] private GameObject packagePrefab;
+    
     [SerializeField] private Transform spawnPoint;
     // Start is called before the first frame update
     void Start()
     {
-        SpawnPackage();
+        StartCoroutine(WillSpawnPackage(1));
     }
 
     public IEnumerator WillSpawnPackage(float t)
@@ -27,16 +26,11 @@ public class PickupLocation : MonoBehaviour
     
     void SpawnPackage()
     {
-        GameObject newPackage = GameObject.Instantiate(packagePrefab);
+        GameObject newPackage = GameObject.Instantiate(Global.Instance.GetRandomPackage());
         newPackage.transform.position = spawnPoint.position;
         newPackage.GetComponent<Package>().pl = this;
         newPackage.GetComponent<Package>().destination = Global.Instance.GetRandomDestination().destinationPoint.position;
 
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

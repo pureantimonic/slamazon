@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -84,11 +83,11 @@ public class DroneController : MonoBehaviour
         if (targetPackage && !currentPackage)
         {
             PickupPackage(targetPackage);
-        }else if (currentPackage)
+        }/*else if (currentPackage)
         {
             ReleasePackage();
             
-        }
+        }*/
 
         lineRenderer.enabled = true;
         
@@ -116,7 +115,6 @@ public class DroneController : MonoBehaviour
         destinationEffect.SetActive(false);
         lineRenderer.enabled = false;
         packBody.GetComponent<Package>().OnRelease();
-        
         return packBody.gameObject;
         
     }
