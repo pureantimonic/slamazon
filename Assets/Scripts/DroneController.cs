@@ -17,14 +17,17 @@ public class DroneController : MonoBehaviour
     [SerializeField] private float MaxAngle = 15;
 
     [Header("Gameplay")] [SerializeField] private float pickupRange = 4;
+    [SerializeField] private float CannonPower = 5;
     [SerializeField] private LayerMask packageLayer;
     [SerializeField] private Rigidbody attachBody;
     [SerializeField] private Transform camView;
+    [SerializeField] private Transform shootOrigin;
     [SerializeField] private GameObject destinationEffect;
     [SerializeField] private LineRenderer lineRenderer;
     private GameObject DestinationEffect;
 
     [Header("UI")] [SerializeField] private Image pickupHighlight;
+    [SerializeField] private ShootUI shootUI;
     
     private Quaternion initialRotation;
     private Vector2 latInput;
@@ -34,9 +37,11 @@ public class DroneController : MonoBehaviour
     private Package targetPackage;
     private Package currentPackage;
     private bool readyToFire;
+    private bool firing;
     private float startFireTime;
     private float lookAngleY;
     private Animator anim;
+    private float firePower;
 
     private Rigidbody rbody;
     // Start is called before the first frame update
@@ -83,25 +88,25 @@ public class DroneController : MonoBehaviour
         if (targetPackage && !currentPackage)
         {
             PickupPackage(targetPackage);
-        }/*else if (currentPackage)
+        }else if (currentPackage)
         {
             ReleasePackage();
             
-        }*/
+        }
 
-        lineRenderer.enabled = true;
+        
         
     }
 
     private void OnPrepFire(InputValue val)
     {
-        
-        readyToFire = val.Get<float>() > 0;
+        bool attempt = val.Get<float>() > 0;
+        if (attempt && !currentPackage)
+            return;
+        readyToFire = attempt;
+        shootUI.SetShootPower(0);
         anim.SetBool("IsPrepFire", readyToFire);
-        if (readyToFire)
-        {
-            startFireTime = Time.time;
-        }
+        
         
     }
 
@@ -122,13 +127,27 @@ public class DroneController : MonoBehaviour
     private void OnFire(InputValue val)
     {
         if (!readyToFire)
+        {
+            firing = false;
             return;
-        float power = (Time.time - startFireTime);
-        GameObject package = ReleasePackage();
-        Rigidbody packBody = package.GetComponent<Rigidbody>();
-        packBody.AddForce(Camera.main.transform.forward * power * 50, ForceMode.Impulse);
+        }
 
-
+        firing = val.Get<float>() > 0;
+        if (firing)
+        {
+            startFireTime = Time.time;
+        }
+        else
+        {
+            float power = firePower;
+        
+            GameObject package = ReleasePackage();
+            package.transform.position = shootOrigin.position;
+            Rigidbody packBody = package.GetComponent<Rigidbody>();
+            packBody.AddForce(Camera.main.transform.forward * power * CannonPower, ForceMode.Impulse);
+        }
+       
+        
     }
 
     private void PickupPackage(Package package)
@@ -137,6 +156,7 @@ public class DroneController : MonoBehaviour
         destinationEffect.transform.position = package.destination;
         currentPackage = package;
         //package.transform.position = attachBody.transform.position;
+        lineRenderer.enabled = true;
         ConfigurableJoint cfj = package.gameObject.AddComponent<ConfigurableJoint>();
         cfj.anchor = package.anchorPoint;
         cfj.connectedBody = attachBody;
@@ -228,6 +248,12 @@ public class DroneController : MonoBehaviour
         {
             pickupHighlight.enabled = false;
             targetPackage = null;
+        }
+
+        if (firing)
+        {
+            firePower = ((-Mathf.Cos(Time.time - startFireTime)) + 1) / 2;
+            shootUI.SetShootPower(firePower);
         }
 
         if (currentPackage)

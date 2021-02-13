@@ -71,10 +71,29 @@ public class Package : MonoBehaviour
 
     public void OnRest()
     {
-        Debug.Log("Package Delivered");
         Destroy(m_BoxIcon);
         Global.Instance.AddScore(10 - Vector3.Distance(transform.position, destination));
         Destroy(gameObject);
+    }
+
+    private IEnumerator WaitForMotion(float t)
+    {
+        float _t = 0;
+        while (_t < t)
+        {
+            _t += Time.fixedDeltaTime;
+            if (rbody.velocity.magnitude > minVelocity)
+            {
+                waitingForRest = true;
+                break;
+            }
+            yield return new WaitForFixedUpdate();
+        }
+        if (!waitingForRest)
+        {
+            OnRest();
+        }
+        
     }
 
     private void FixedUpdate()
@@ -84,7 +103,7 @@ public class Package : MonoBehaviour
             if (rbody.velocity.magnitude < minVelocity)
             {
                 waitingForRest = false;
-                OnRest();
+                StartCoroutine(WaitForMotion(0.5f));
             }
         }
     }

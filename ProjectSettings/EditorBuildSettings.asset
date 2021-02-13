@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Neighboorhood.unity
+    path: Assets/Scenes/Neighboorhood.unity
     guid: 506e3b5e31e80e640ab2a35fa64b8db8
   m_configObjects: {}
