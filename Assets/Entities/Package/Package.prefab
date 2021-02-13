@@ -144,7 +144,8 @@ MonoBehaviour:
   iconCanvas: {fileID: 0}
   boxIcon: {fileID: 4851761665695155620, guid: 7fdd91cc750057f48942c9cd631efd95, type: 3}
   iconMargin: 0.1
-  anchorPoint: {x: 0, y: 0.2, z: 0}
+  anchorPoint: {x: 0, y: 0.1, z: 0}
+  pl: {fileID: 0}
   Destination: {x: 0, y: 0, z: 0}
   mainMesh: {fileID: 518734768558066995}
 --- !u!54 &919132149332642713

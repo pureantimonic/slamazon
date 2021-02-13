@@ -22,6 +22,7 @@ public class DroneController : MonoBehaviour
     [SerializeField] private Rigidbody attachBody;
     [SerializeField] private Transform camView;
     [SerializeField] private GameObject destinationEffect;
+    [SerializeField] private LineRenderer lineRenderer;
     private GameObject DestinationEffect;
 
     [Header("UI")] [SerializeField] private Image pickupHighlight;
@@ -42,6 +43,7 @@ public class DroneController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         destinationEffect.SetActive(false);
         targetRotation = transform.rotation;
         initialRotation = modelTransform.localRotation;
@@ -70,7 +72,7 @@ public class DroneController : MonoBehaviour
 
     public void OnUpDown(InputValue val)
     {
-        vertInput = val.Get<float>();
+       // vertInput = val.Get<float>();
     }
 
     public void OnPickUp(InputValue val)
@@ -87,6 +89,9 @@ public class DroneController : MonoBehaviour
             ReleasePackage();
             
         }
+
+        lineRenderer.enabled = true;
+        
     }
 
     private void OnPrepFire(InputValue val)
@@ -109,7 +114,11 @@ public class DroneController : MonoBehaviour
         Destroy(currentPackage.gameObject.GetComponent<ConfigurableJoint>());
         currentPackage = null;
         destinationEffect.SetActive(false);
+        lineRenderer.enabled = false;
+        packBody.GetComponent<Package>().OnRelease();
+        
         return packBody.gameObject;
+        
     }
 
     private void OnFire(InputValue val)
@@ -119,7 +128,7 @@ public class DroneController : MonoBehaviour
         float power = (Time.time - startFireTime);
         GameObject package = ReleasePackage();
         Rigidbody packBody = package.GetComponent<Rigidbody>();
-        packBody.AddForce(transform.forward * power * 50, ForceMode.Impulse);
+        packBody.AddForce(Camera.main.transform.forward * power * 50, ForceMode.Impulse);
 
 
     }
@@ -127,7 +136,7 @@ public class DroneController : MonoBehaviour
     private void PickupPackage(Package package)
     {
         destinationEffect.SetActive(true);
-        destinationEffect.transform.position = package.Destination;
+        destinationEffect.transform.position = package.destination;
         currentPackage = package;
         //package.transform.position = attachBody.transform.position;
         ConfigurableJoint cfj = package.gameObject.AddComponent<ConfigurableJoint>();
@@ -222,7 +231,12 @@ public class DroneController : MonoBehaviour
             pickupHighlight.enabled = false;
             targetPackage = null;
         }
-        
+
+        if (currentPackage)
+        {
+            lineRenderer.SetPosition(0, attachBody.position);
+            lineRenderer.SetPosition(1, currentPackage.transform.TransformPoint(currentPackage.GetComponent<ConfigurableJoint>().anchor));
+        }
 
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, MaxAngAccel * Time.deltaTime);
     }

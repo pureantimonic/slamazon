@@ -30,8 +30,8 @@ public class PickupLocation : MonoBehaviour
         GameObject newPackage = GameObject.Instantiate(packagePrefab);
         newPackage.transform.position = spawnPoint.position;
         newPackage.GetComponent<Package>().pl = this;
-        newPackage.GetComponent<Package>().Destination = new Vector3(Random.Range(-15, 15), 0, Random.Range(-15, 15));
-        
+        newPackage.GetComponent<Package>().destination = Global.Instance.GetRandomDestination().destinationPoint.position;
+
     }
 
     // Update is called once per frame
