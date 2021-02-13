@@ -13,7 +13,11 @@ public class Global : MonoBehaviour
 
     public float Score = 0;
 
+    public int PackageDeliverd = 0;
+
     public TextMeshProUGUI ScoreText;
+
+    public TextMeshProUGUI PackageText;
 
     public List<Destination> destinations;
 
@@ -47,6 +51,11 @@ public class Global : MonoBehaviour
         Score += Mathf.Max(0,score);
     }
 
+    public void AddPackage()
+    {
+        PackageDeliverd++;
+    }
+
     public GameObject GetRandomPackage()
     {
         return Packages[Random.Range(0, Packages.Length)];
@@ -55,6 +64,7 @@ public class Global : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ScoreText.text = Score.ToString();
+        ScoreText.text = Score.ToString("F0");
+        PackageText.text = PackageDeliverd.ToString();
     }
 }
