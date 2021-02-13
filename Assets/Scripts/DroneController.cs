@@ -291,4 +291,10 @@ public class DroneController : MonoBehaviour
 
     }
 
+    public void SetAngularSpeed(float angularSpeed)
+    {
+        AngularSpeed = angularSpeed;
+        //Debug.Log("Speed changed" + AngularSpeed);
+    }
+
 }

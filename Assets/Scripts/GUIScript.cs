@@ -4,17 +4,24 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class GUIScript : MonoBehaviour
 {
     public static bool gamePaused = false;
-    public GameObject pauseMenuUI;
+    public GameObject pauseMenuPanel;
+    public GameObject settingPanel;
 
     public GameObject timeDisplay;
     public int secondLeft = 30;
     public bool timeGone = false;
 
-    public Slider slider;
+    public Slider healthBar;
+
+    public AudioMixer audioMixer;
+
+    public DroneController droneContriller;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,7 +57,7 @@ public class GUIScript : MonoBehaviour
     public void Resume()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        pauseMenuUI.SetActive(false);
+        pauseMenuPanel.SetActive(false);
         Time.timeScale = 1f;
         gamePaused = false;
     }
@@ -58,7 +65,7 @@ public class GUIScript : MonoBehaviour
     void Pause()
     {
         Cursor.lockState = CursorLockMode.None;
-        pauseMenuUI.SetActive(true);
+        pauseMenuPanel.SetActive(true);
         Time.timeScale = 0f;
         gamePaused = true;
     }
@@ -99,12 +106,35 @@ public class GUIScript : MonoBehaviour
 
     public void SetHealth(int health)
     {
-        slider.value = health;
+        healthBar.value = health;
     }
 
     public void SetMaxHealth(int health)
     {
-        slider.maxValue = health;
-        slider.value = health;
+        healthBar.maxValue = health;
+        healthBar.value = health;
+    }
+
+    public void GoSettingMenu()
+    {
+        pauseMenuPanel.SetActive(false);
+        settingPanel.SetActive(true);
+    }
+
+    public void ReturnFromSetting()
+    {
+        settingPanel.SetActive(false);
+        pauseMenuPanel.SetActive(true);
+    }
+
+    public void SetVolume(float volume)
+    {
+        //Debug.Log(volume);
+        audioMixer.SetFloat("Volume", volume);
+    }
+
+    public void SetMouseSensitivity(float sensitivity)
+    {
+        droneContriller.SetAngularSpeed(sensitivity/40 + 0.01F);
     }
 }
