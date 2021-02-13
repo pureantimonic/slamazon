@@ -36,6 +36,22 @@
                     "expectedControlType": "Analog",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "PickUp",
+                    "type": "Value",
+                    "id": "0dbd16c8-ae55-46c7-b838-b11792a04dfe",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "PrepFire",
+                    "type": "Value",
+                    "id": "7397e495-b935-4ad6-8170-83bf0def66a2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -291,6 +307,28 @@
                     "action": "UpDown",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "fc6cd5c5-dc42-4b98-85c6-64f247eeebe1",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PickUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7673bffb-3dbe-428a-9089-bb5d24ee5b19",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PrepFire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
