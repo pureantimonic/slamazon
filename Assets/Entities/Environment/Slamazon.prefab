@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &744319371
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 744319372}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &744319372
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744319371}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.05, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 565623854463860122}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &268699341595598502
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,7 +172,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 8992934318045909824, guid: 8c1c836ca41032e4bb9302b512ff3078, type: 3}
-  - {fileID: -876546973899608171, guid: 8c1c836ca41032e4bb9302b512ff3078, type: 3}
+  - {fileID: 2100000, guid: 32c5bd61ed554e940a14b16ddad4810e, type: 2}
   - {fileID: -4998220624752758648, guid: 8c1c836ca41032e4bb9302b512ff3078, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -187,6 +217,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 565623854463860122}
+  - component: {fileID: 1419303649}
   m_Layer: 0
   m_Name: Slamazon
   m_TagString: Untagged
@@ -203,7 +234,7 @@ Transform:
   m_GameObject: {fileID: 905979209623430944}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -39.059208, y: -5.9869986, z: 15.256977}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children:
   - {fileID: 6929287937310264448}
   - {fileID: 3722464184633599743}
@@ -214,9 +245,23 @@ Transform:
   - {fileID: 1385739350551009257}
   - {fileID: 3943251508621286881}
   - {fileID: 2384973990874356888}
+  - {fileID: 744319372}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1419303649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905979209623430944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e675ee66f471c4fa518f4a4b43a4e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 744319372}
 --- !u!1 &1559528061444901395
 GameObject:
   m_ObjectHideFlags: 0

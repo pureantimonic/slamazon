@@ -693,6 +693,7 @@ MonoBehaviour:
   timeDisplay: {fileID: 1209280010674440209}
   secondLeft: 30
   timeGone: 0
+  slider: {fileID: 1080062087902419908}
 --- !u!114 &1209280011179046433
 MonoBehaviour:
   m_ObjectHideFlags: 0
