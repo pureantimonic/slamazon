@@ -13,6 +13,8 @@ public class GUIScript : MonoBehaviour
     public GameObject timeDisplay;
     public int secondLeft = 30;
     public bool timeGone = false;
+
+    public Slider slider;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +49,7 @@ public class GUIScript : MonoBehaviour
 
     public void Resume()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         gamePaused = false;
@@ -54,6 +57,7 @@ public class GUIScript : MonoBehaviour
 
     void Pause()
     {
+        Cursor.lockState = CursorLockMode.None;
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         gamePaused = true;
@@ -91,5 +95,16 @@ public class GUIScript : MonoBehaviour
             timeDisplay.GetComponent<Text>().text = "00:" + secondLeft;
         }
         timeGone = false;
+    }
+
+    public void SetHealth(int health)
+    {
+        slider.value = health;
+    }
+
+    public void SetMaxHealth(int health)
+    {
+        slider.maxValue = health;
+        slider.value = health;
     }
 }
