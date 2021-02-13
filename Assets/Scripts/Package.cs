@@ -74,6 +74,7 @@ public class Package : MonoBehaviour
         Debug.Log("Package Delivered");
         Destroy(m_BoxIcon);
         Global.Instance.AddScore(10 - Vector3.Distance(transform.position, destination));
+        Global.Instance.AddPackage();
         Destroy(gameObject);
     }
 
