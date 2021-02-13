@@ -39,6 +39,10 @@ public class DroneController : MonoBehaviour
     private Animator anim;
 
     private Rigidbody rbody;
+
+    public GUIScript GUICanvas;
+    public int droneHealth = 100;
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +53,8 @@ public class DroneController : MonoBehaviour
         rbody = GetComponent<Rigidbody>();
         pickupHighlight.enabled = false;
         anim = GetComponent<Animator>();
+
+        GUICanvas.SetMaxHealth(droneHealth);
     }
 
 
@@ -238,5 +244,24 @@ public class DroneController : MonoBehaviour
 
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, MaxAngAccel * Time.deltaTime);
     }
-    
+
+    void OnCollisionEnter(Collision collision)
+    {
+        // get the direction from player to collider
+        Vector3 collisionNormal = (collision.transform.position - transform.position).normalized;
+
+        // get player speed towards the collision
+        float playerCollisionSpeed = Vector3.Dot(collisionNormal, rbody.velocity);
+        float otherCollisionSpeed = Vector3.Dot(-collisionNormal, collision.relativeVelocity + rbody.velocity);
+        float collisionSpeed = playerCollisionSpeed + otherCollisionSpeed;
+        //Debug.Log("Collide!!!" + playerCollisionSpeed.ToString("F2") + ":::::" + otherCollisionSpeed.ToString("F2"));
+        //Debug.Log("Overall speed" + collisionSpeed.ToString("F2"));
+        if(collisionSpeed > 1)
+        {
+            droneHealth -= (int)(collisionSpeed * 5);
+            GUICanvas.SetHealth(droneHealth);
+        }
+
+    }
+
 }
