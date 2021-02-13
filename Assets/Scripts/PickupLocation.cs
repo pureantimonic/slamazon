@@ -7,15 +7,30 @@ public class PickupLocation : MonoBehaviour
     private Package currentPackage;
 
     [SerializeField] private GameObject packagePrefab;
-    [SerializeField] private Vector3 spawnPoint;
+    [SerializeField] private Transform spawnPoint;
     // Start is called before the first frame update
     void Start()
     {
-        
+        SpawnPackage();
     }
 
+    public IEnumerator WillSpawnPackage(float t)
+    {
+        yield return new WaitForSeconds(t);
+        SpawnPackage();
+    }
+
+    public void OnPackagePickedUp()
+    {
+        StartCoroutine(WillSpawnPackage(3));
+    }
+    
     void SpawnPackage()
     {
+        GameObject newPackage = GameObject.Instantiate(packagePrefab);
+        newPackage.transform.position = spawnPoint.position;
+        newPackage.GetComponent<Package>().pl = this;
+        newPackage.GetComponent<Package>().Destination = new Vector3(Random.Range(-15, 15), 0, Random.Range(-15, 15));
         
     }
 
