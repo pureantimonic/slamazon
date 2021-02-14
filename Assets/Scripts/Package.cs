@@ -137,8 +137,16 @@ public class Package : MonoBehaviour
         {
             return;
         }
-        Destroy(m_BoxIcon);
-        ord.om.CompleteOrder(ord);
+
+        try
+        {
+            Destroy(m_BoxIcon);
+            ord.om.CompleteOrder(ord);
+        }
+        catch (Exception e)
+        {
+        }
+
         Global.Instance.AddScore((10 - distanceToDest) / (10F/10F));
         Global.Instance.AddPackage();
         Destroy(GameObject.Instantiate(deliveredEffect, transform.position, Quaternion.identity), 2);
