@@ -49,6 +49,7 @@ public class Global : MonoBehaviour
 
     public void AddScore(float score)
     {
+        Debug.Log("GET SCORE:  " + score);
         Score += Mathf.Max(0,score);
         GUICanvas.UpdateGUI((int)Score, PackageDeliverd);
     }
