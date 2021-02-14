@@ -14,6 +14,7 @@ public class OrderManager : MonoBehaviour
     [Header("Sound")] [SerializeField] private AudioClip newOrderSound;
     [SerializeField] private List<AudioClip> completedOrderSounds;
     [SerializeField] private AudioClip failedOrderSound;
+    [SerializeField] public Color colorOffset;
     private int consecutiveDeliveries = 0;
     
     public class Order
@@ -66,7 +67,6 @@ public class OrderManager : MonoBehaviour
         {
             Destroy(ord.person);
         }
-        
         ord.UI.OnComplete();
         ongoingOrders.Remove(ord);
     }
@@ -84,7 +84,7 @@ public class OrderManager : MonoBehaviour
         newOrder.person.transform.rotation = newOrder.destination.destinationPoint.rotation;
         GameObject uiOrder = GameObject.Instantiate(orderUIPrefab, orderUIParent);
         newOrder.UI = uiOrder.GetComponent<OrderUI>();
-        newOrder.UI.SetColor(newOrder.color);
+        newOrder.UI.SetColor(newOrder.color + colorOffset);
         foreach (PickupLocation pl in Global.Instance.depots)
         {
             if (pl.CanSpawnPackage())
@@ -122,10 +122,13 @@ public class OrderManager : MonoBehaviour
             ord.UI.SetTimeRemaining(timeRemainingNorm);
             if (timeRemainingNorm < 0)
             {
+                Debug.Log(ord.package);
                 if (ord.package)
                 {
+                    
                     ord.package.GetComponent<Package>().DestroyPackage();
                 }
+                
                 Destroy(ord.person);
                 ord.UI.OnFail();
                 consecutiveDeliveries = 0;

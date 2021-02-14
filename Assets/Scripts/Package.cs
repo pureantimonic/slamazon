@@ -19,6 +19,8 @@ public class Package : MonoBehaviour
     private Rigidbody rbody;
     private bool waitingForRest;
     private bool waitingForContact;
+    private bool held;
+    private PickupLocation depot;
 
 
     public Color GetOrderColor()
@@ -28,12 +30,13 @@ public class Package : MonoBehaviour
     private OrderManager.Order ord;
 
 
-    public void SetOrder(OrderManager.Order col)
+    public void SetOrder(OrderManager.Order col, PickupLocation pl)
     {
+        col.package = gameObject;
         destination = col.destination.destinationPoint.position;
         mainMesh.material.color = col.color;
         ord = col;
-
+        depot = pl;
     }
 
     public void Start()
@@ -49,19 +52,22 @@ public class Package : MonoBehaviour
         packageIcon.transform.SetParent(iconCanvas.transform, false);
         destinationIcon.transform.SetParent(iconCanvas.transform, false);
 
-        packageIcon.GetComponent<Image>().color = ord.color;
-        destinationIcon.GetComponent<Image>().color = ord.color;
+        packageIcon.GetComponent<Image>().color = ord.color + ord.om.colorOffset;
+        destinationIcon.GetComponent<Image>().color = ord.color  + ord.om.colorOffset;
         
 
     }
 
     public void DestroyPackage()
     {
-        if (destinationIcon.activeSelf)
+        depot.OnLostPackage(this);
+        if (held)
         {
             dc.ReleasePackage();
-            Destroy(gameObject);
         }
+       
+        Destroy(gameObject);
+        
     }
 
     public void UpdateIcon(Vector3 position, GameObject obj)
@@ -101,6 +107,7 @@ public class Package : MonoBehaviour
 
     public void OnPickedUp(DroneController _dc)
     {
+        held = true;
         destinationIcon.SetActive(true);
         packageIcon.SetActive(false);
         waitingForContact = false;
@@ -115,6 +122,7 @@ public class Package : MonoBehaviour
 
     public void OnRelease()
     {
+        held = false;
         destinationIcon.SetActive(false);
         packageIcon.SetActive(true);
         //waitingForRest = true;
