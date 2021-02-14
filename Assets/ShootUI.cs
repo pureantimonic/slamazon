@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class ShootUI : MonoBehaviour
 
     public void SetShootPower(float t)
     {
+        Debug.Log(t);
         t = Mathf.Clamp(t, 0, 1);
         fillBar.color = fillColor.Evaluate(t);
         fillBar.fillAmount = t;

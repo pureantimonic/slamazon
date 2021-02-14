@@ -118,6 +118,7 @@ public class DroneController : MonoBehaviour
 
     private GameObject ReleasePackage()
     {
+        
         Rigidbody packBody = currentPackage.GetComponent<Rigidbody>();
         packBody.drag = 0;
         packBody.angularDrag = 0.05f;
