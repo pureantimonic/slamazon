@@ -1726,6 +1726,7 @@ MonoBehaviour:
   pickupHighlight: {fileID: 1437668839}
   shootUI: {fileID: 341610795}
   damageSound: {fileID: 8300000, guid: 369bb2f87075a5d439b70e4d15de5520, type: 3}
+  cannonSound: {fileID: 8300000, guid: 61db1c57b85d0ea4d8d10659ea64faa1, type: 3}
   GUICanvas: {fileID: 0}
   droneHealth: 100
 --- !u!114 &775858736
@@ -1786,7 +1787,7 @@ AudioSource:
   m_GameObject: {fileID: 978834960204395461}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: ba5498ec818d669468cfe7076ca969ec, type: 2}
   m_audioClip: {fileID: 8300000, guid: 90fcf5099294f5f439a5842a596445c7, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.075
