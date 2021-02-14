@@ -25,6 +25,11 @@ public class GUIScript : MonoBehaviour
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI PackageText;
 
+    public TextMeshProUGUI EndWinLose;
+    public TextMeshProUGUI EndScoreText;
+    public TextMeshProUGUI EndSPackageText;
+    public TextMeshProUGUI EndHealthText;
+
 
     public int minLeft = 1;
     public int secondLeft = 10;
@@ -88,6 +93,22 @@ public class GUIScript : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0f;
         gameState = State.End;
+
+        if(droneHealth <= 0)
+        {
+            EndWinLose.text = "LOSE";
+        }
+        else
+        {
+            EndWinLose.text = "WIN";
+        }
+
+        EndScoreText.text = gameScore.ToString();
+        EndSPackageText.text = deliveredPackage.ToString();
+        EndHealthText.text = droneHealth.ToString();
+
+
+
         pauseMenuPanel.SetActive(false);
         settingPanel.SetActive(false);
         endPanel.SetActive(true);
@@ -175,6 +196,11 @@ public class GUIScript : MonoBehaviour
     {
         healthBar.value = health;
         droneHealth = health;
+        if(droneHealth <= 0)
+        {
+            droneHealth = 0;
+            GameEnd();
+        }
     }
 
     public void SetMaxHealth(int health)
