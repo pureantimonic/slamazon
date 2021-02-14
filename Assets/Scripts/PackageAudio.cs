@@ -66,7 +66,5 @@ public class PackageAudio : MonoBehaviour
     {
         baseSource.pitch = basePitch * AudioManager.Instance.globalPitch;
         source.pitch = pitch * AudioManager.Instance.globalPitch;
-
-
     }
 }
