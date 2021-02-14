@@ -7,6 +7,7 @@ public class PickupLocation : MonoBehaviour
     private Package currentPackage;
     private bool hasPackage;
     private OrderManager om;
+
     [SerializeField] private Transform spawnPoint;
     // Start is called before the first frame update
 
@@ -14,6 +15,7 @@ public class PickupLocation : MonoBehaviour
     {
         om = _om;
     }
+
     void Start()
     {
         Global.Instance.RegisterDepot(this);
@@ -24,7 +26,14 @@ public class PickupLocation : MonoBehaviour
         return !hasPackage;
     }
 
-   
+    public void OnLostPackage(Package p)
+    {
+        if (p == currentPackage)
+        {
+            OnPackagePickedUp();
+            
+        }
+    }
 
     public void OnPackagePickedUp()
     {
@@ -51,7 +60,7 @@ public class PickupLocation : MonoBehaviour
         GameObject newPackage = GameObject.Instantiate(Global.Instance.GetRandomPackage());
         newPackage.transform.position = spawnPoint.position;
         newPackage.GetComponent<Package>().pl = this;
-        newPackage.GetComponent<Package>().SetOrder(ord);
+        newPackage.GetComponent<Package>().SetOrder(ord, this);
         ord.package = newPackage;
         currentPackage = newPackage.GetComponent<Package>();
     }
