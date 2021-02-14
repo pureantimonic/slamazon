@@ -113,6 +113,7 @@ public class DroneController : MonoBehaviour
         bool attempt = val.Get<float>() > 0;
         if (attempt && !currentPackage)
             return;
+        AudioManager.Instance.TimeSlow(attempt);
         readyToFire = attempt;
         Time.timeScale = readyToFire ? 0.3f : 1;
         Time.fixedDeltaTime = readyToFire ? (0.3f * 0.02f) : 0.02f;

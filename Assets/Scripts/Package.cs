@@ -21,20 +21,9 @@ public class Package : MonoBehaviour
     
     
 
-    [SerializeField] private float velocityThreshold;
-    [SerializeField] private float baseProbability = 1f;
-    [SerializeField] private float specialChance = 0.1f;
-    private int packageType;
-    private AudioSource audioSource;
-    private AudioSource baseAudioSource;
-    
     public void Start()
     {
         rbody = GetComponent<Rigidbody>();
-        var audioSources = GetComponents<AudioSource>();
-        audioSource = audioSources[0];
-        baseAudioSource = audioSources[1];
-        
         iconCanvas = Global.Instance.iconCanvas;
 
         packageIcon = gameObject.transform.Find("PackageIcon").gameObject;
@@ -47,14 +36,6 @@ public class Package : MonoBehaviour
         packageIcon.GetComponent<Image>().color = color;
         destinationIcon.GetComponent<Image>().color = color;
 
-        if (Random.value < specialChance)
-        {
-            packageType = Random.Range(0, Global.Instance.collisionClips.Count);
-        }
-        else
-        {
-            packageType = -1;
-        }
     }
 
     public void UpdateIcon(Vector3 position, GameObject obj)
@@ -155,30 +136,13 @@ public class Package : MonoBehaviour
             }
         }
     }
-    
-    public void OnCollisionEnter(Collision other)
+
+    private void OnCollisionEnter(Collision other)
     {
         if (waitingForContact && (other.collider.gameObject.layer== 9))
         {
             OnRest();
         }
-        if (packageType > -1 && other.relativeVelocity.magnitude > velocityThreshold && !audioSource.isPlaying)
-        {
-            var choices = Global.Instance.collisionClips[packageType].innerList;
-            audioSource.clip = choices[Random.Range(0, choices.Count)];
-            audioSource.Play();
-        }
-        
-        // regular box noise
-        if (Random.value < baseProbability)
-        {
-            baseAudioSource.pitch = Random.Range(0.6f, 1.4f);
-            baseAudioSource.PlayOneShot(
-                Global.Instance.baseCollisionClips[Random.Range(0, Global.Instance.baseCollisionClips.Count)],
-                0.5f
-            );
-        }
-        
     }
 
     public PickupLocation pl;
