@@ -183,7 +183,7 @@ public class DroneController : MonoBehaviour
         cfj.zMotion = ConfigurableJointMotion.Limited;
         cfj.linearLimit =  new SoftJointLimit {limit = 0.8f};
         Rigidbody packBody = package.GetComponent<Rigidbody>();
-        package.GetComponent<Package>().OnPickedUp();
+        package.GetComponent<Package>().OnPickedUp(this);
         packBody.drag = 1;
         packBody.angularDrag = 0.1f;
         
