@@ -72,9 +72,11 @@ public class Package : MonoBehaviour
             screenPoint.x = Mathf.Sign(screenPoint.x) * Mathf.NegativeInfinity;
         }
 
-        obj.transform.position = new Vector3(
-            Mathf.Clamp(screenPoint.x, w * iconMargin, w * (1f - iconMargin)),
-            h * 0.9f);
+        screenPoint.x /= 2;
+       // Debug.Log(screenPoint.x);
+        //obj.transform.position = new Vector3(
+        //    Mathf.Clamp(screenPoint.x, w * iconMargin, w * (1f - iconMargin)),
+        //    h * 0.9f);
     }
 
     public void Update()
@@ -92,12 +94,12 @@ public class Package : MonoBehaviour
     [SerializeField] public Vector3 anchorPoint;
 
 
-    public void OnPickedUp()
+    public void OnPickedUp(DroneController _dc)
     {
         destinationIcon.SetActive(true);
         packageIcon.SetActive(false);
         waitingForContact = false;
-
+        dc = _dc;
         waitingForRest = false;
         if (pl)
         {
