@@ -14,46 +14,48 @@ public class Package : MonoBehaviour
     [SerializeField] private float minVelocity = 0.1f;
     [SerializeField] private GameObject deliveredEffect;
     [SerializeField] private LayerMask groundLayer;
+    public DroneController dc;
     private GameObject m_BoxIcon;
     private Rigidbody rbody;
     private bool waitingForRest;
     private bool waitingForContact;
     
     
+    private OrderManager.Order ord;
 
-    [SerializeField] private float velocityThreshold;
-    [SerializeField] private float baseProbability = 1f;
-    [SerializeField] private float specialChance = 0.1f;
-    private int packageType;
-    private AudioSource audioSource;
-    private AudioSource baseAudioSource;
-    
+
+    public void SetOrder(OrderManager.Order col)
+    {
+        destination = col.destination.destinationPoint.position;
+        mainMesh.material.color = col.color;
+        ord = col;
+
+    }
+
     public void Start()
     {
         rbody = GetComponent<Rigidbody>();
-        var audioSources = GetComponents<AudioSource>();
-        audioSource = audioSources[0];
-        baseAudioSource = audioSources[1];
-        
         iconCanvas = Global.Instance.iconCanvas;
 
         packageIcon = gameObject.transform.Find("PackageIcon").gameObject;
         destinationIcon = gameObject.transform.Find("DestinationIcon").gameObject;
-        
+        //packageIcon.SetActive(false);
+        destinationIcon.SetActive(false);
         packageIcon.transform.SetParent(iconCanvas.transform, false);
         destinationIcon.transform.SetParent(iconCanvas.transform, false);
 
-        Color color = UnityEngine.Random.ColorHSV(0f, 1f, 0.8f, 0.8f, 0.8f, 0.8f);
-        packageIcon.GetComponent<Image>().color = color;
-        destinationIcon.GetComponent<Image>().color = color;
+        packageIcon.GetComponent<Image>().color = ord.color;
+        destinationIcon.GetComponent<Image>().color = ord.color;
+        
 
-        if (Random.value < specialChance)
+    }
+
+    public void DestroyPackage()
+    {
+        if (destinationIcon.activeSelf)
         {
-            packageType = Random.Range(0, Global.Instance.collisionClips.Count);
-        }
-        else
-        {
-            packageType = -1;
+            dc.ReleasePackage();
+            Destroy(gameObject);
         }
     }
 
@@ -92,6 +94,8 @@ public class Package : MonoBehaviour
 
     public void OnPickedUp()
     {
+        destinationIcon.SetActive(true);
+        packageIcon.SetActive(false);
         waitingForContact = false;
 
         waitingForRest = false;
@@ -104,21 +108,23 @@ public class Package : MonoBehaviour
 
     public void OnRelease()
     {
+        destinationIcon.SetActive(false);
+        packageIcon.SetActive(true);
         //waitingForRest = true;
         waitingForContact = true;
-        waitingForRest = true;
+        //waitingForRest = true;
     }
 
     public void OnRest()
     {
         float distanceToDest = Vector3.Distance(transform.position, destination);
-        if (distanceToDest > 20)
+        if (distanceToDest > 10)
         {
             return;
         }
         Destroy(m_BoxIcon);
-        Debug.Log("distanceToDest: " + distanceToDest);
-        Global.Instance.AddScore((20 - distanceToDest) / (10F/20F));
+        ord.om.CompleteOrder(ord);
+        Global.Instance.AddScore((10 - distanceToDest) / (10F/10F));
         Global.Instance.AddPackage();
         Destroy(GameObject.Instantiate(deliveredEffect, transform.position, Quaternion.identity), 2);
         Destroy(gameObject);
@@ -155,30 +161,13 @@ public class Package : MonoBehaviour
             }
         }
     }
-    
-    public void OnCollisionEnter(Collision other)
+
+    private void OnCollisionEnter(Collision other)
     {
         if (waitingForContact && (other.collider.gameObject.layer== 9))
         {
             OnRest();
         }
-        if (packageType > -1 && other.relativeVelocity.magnitude > velocityThreshold && !audioSource.isPlaying)
-        {
-            var choices = Global.Instance.collisionClips[packageType].innerList;
-            audioSource.clip = choices[Random.Range(0, choices.Count)];
-            audioSource.Play();
-        }
-        
-        // regular box noise
-        if (Random.value < baseProbability)
-        {
-            baseAudioSource.pitch = Random.Range(0.6f, 1.4f);
-            baseAudioSource.PlayOneShot(
-                Global.Instance.baseCollisionClips[Random.Range(0, Global.Instance.baseCollisionClips.Count)],
-                0.5f
-            );
-        }
-        
     }
 
     public PickupLocation pl;
