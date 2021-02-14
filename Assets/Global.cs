@@ -21,6 +21,8 @@ public class Global : MonoBehaviour
 
     public GUIScript GUICanvas;
 
+    public List<AudioClip> baseCollisionClips;
+    public List<ListWrapper<AudioClip>> collisionClips;
     // Start is called before the first frame update
     void Awake()
     {

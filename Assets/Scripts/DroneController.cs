@@ -86,7 +86,7 @@ public class DroneController : MonoBehaviour
 
     public void OnUpDown(InputValue val)
     {
-       // vertInput = val.Get<float>();
+        vertInput = val.Get<float>();
     }
 
     public void OnPickUp(InputValue val)
@@ -232,7 +232,7 @@ public class DroneController : MonoBehaviour
 
     public void FixedUpdate()
     {
-        Vector3 targetVel = (transform.forward * latInput.y + transform.right * latInput.x + Vector3.up * vertInput) * Speed;
+        Vector3 targetVel = (transform.forward * latInput.y + transform.right * latInput.x) * Speed;
         MaxAccel = Mathf.Min(0.18f, 0.05f / Mathf.Min(0.01f, rbody.velocity.magnitude));
         rbody.velocity = Vector3.MoveTowards(rbody.velocity, targetVel, MaxAccel);
         Vector3 localVelocity = transform.InverseTransformDirection(rbody.velocity);
@@ -241,6 +241,7 @@ public class DroneController : MonoBehaviour
 
     public void Update()
     {
+        transform.position += Vector3.up * (vertInput * Time.deltaTime);
         camView.localRotation = Quaternion.Euler(lookAngleY, 0, 0);
         Collider[] colls = new Collider[5];
         if (!currentPackage)
@@ -267,7 +268,7 @@ public class DroneController : MonoBehaviour
 
         if (firing)
         {
-            firePower = ((-Mathf.Cos((Time.time - startFireTime) * 2)) + 1) / 2;
+            firePower = ((-Mathf.Cos((Time.time - startFireTime) * 3)) + 1) / 2;
             shootUI.SetShootPower(firePower);
         }
 
