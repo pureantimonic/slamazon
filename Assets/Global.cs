@@ -15,13 +15,12 @@ public class Global : MonoBehaviour
 
     public int PackageDeliverd = 0;
 
-    public TextMeshProUGUI ScoreText;
-
-    public TextMeshProUGUI PackageText;
-
     public List<Destination> destinations;
 
     public GameObject[] Packages;
+
+    public GUIScript GUICanvas;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -49,11 +48,13 @@ public class Global : MonoBehaviour
     public void AddScore(float score)
     {
         Score += Mathf.Max(0,score);
+        GUICanvas.UpdateGUI((int)Score, PackageDeliverd);
     }
 
     public void AddPackage()
     {
         PackageDeliverd++;
+        GUICanvas.UpdateGUI((int)Score, PackageDeliverd);
     }
 
     public GameObject GetRandomPackage()
@@ -64,7 +65,6 @@ public class Global : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ScoreText.text = Score.ToString("F0");
-        PackageText.text = PackageDeliverd.ToString();
+
     }
 }
