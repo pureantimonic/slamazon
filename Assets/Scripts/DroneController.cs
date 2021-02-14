@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 
 public class DroneController : MonoBehaviour
@@ -65,6 +66,9 @@ public class DroneController : MonoBehaviour
 
     
 
+
+    
+
     public void OnLook(InputValue val)
     {
         Vector2 lookInput = val.Get<Vector2>();
@@ -110,6 +114,8 @@ public class DroneController : MonoBehaviour
         if (attempt && !currentPackage)
             return;
         readyToFire = attempt;
+        Time.timeScale = readyToFire ? 0.3f : 1;
+        Time.fixedDeltaTime = readyToFire ? (0.3f * 0.02f) : 0.02f;
         shootUI.SetShootPower(0);
         anim.SetBool("IsPrepFire", readyToFire);
         
@@ -127,6 +133,7 @@ public class DroneController : MonoBehaviour
         destinationEffect.SetActive(false);
         lineRenderer.enabled = false;
         packBody.GetComponent<Package>().OnRelease();
+        packBody.velocity = rbody.velocity;
         return packBody.gameObject;
         
     }
@@ -172,10 +179,10 @@ public class DroneController : MonoBehaviour
         cfj.xMotion = ConfigurableJointMotion.Limited;
         cfj.yMotion = ConfigurableJointMotion.Limited;
         cfj.zMotion = ConfigurableJointMotion.Limited;
-        cfj.linearLimit =  new SoftJointLimit {limit = 0.4f};
+        cfj.linearLimit =  new SoftJointLimit {limit = 0.8f};
         Rigidbody packBody = package.GetComponent<Rigidbody>();
         package.GetComponent<Package>().OnPickedUp();
-        packBody.drag = 5;
+        packBody.drag = 1;
         packBody.angularDrag = 0.1f;
         
     }
@@ -226,6 +233,7 @@ public class DroneController : MonoBehaviour
     public void FixedUpdate()
     {
         Vector3 targetVel = (transform.forward * latInput.y + transform.right * latInput.x + Vector3.up * vertInput) * Speed;
+        MaxAccel = Mathf.Min(0.18f, 0.05f / Mathf.Min(0.01f, rbody.velocity.magnitude));
         rbody.velocity = Vector3.MoveTowards(rbody.velocity, targetVel, MaxAccel);
         Vector3 localVelocity = transform.InverseTransformDirection(rbody.velocity);
         modelTransform.localRotation = Quaternion.Euler(localVelocity.z * 2 , 0,  -localVelocity.x * 2) * initialRotation;
@@ -259,7 +267,7 @@ public class DroneController : MonoBehaviour
 
         if (firing)
         {
-            firePower = ((-Mathf.Cos(Time.time - startFireTime)) + 1) / 2;
+            firePower = ((-Mathf.Cos((Time.time - startFireTime) * 2)) + 1) / 2;
             shootUI.SetShootPower(firePower);
         }
 
@@ -276,7 +284,7 @@ public class DroneController : MonoBehaviour
     {
         // get the direction from player to collider
         Vector3 collisionNormal = (collision.transform.position - transform.position).normalized;
-
+        
         // get player speed towards the collision
         float playerCollisionSpeed = Vector3.Dot(collisionNormal, rbody.velocity);
         float otherCollisionSpeed = Vector3.Dot(-collisionNormal, collision.relativeVelocity + rbody.velocity);
@@ -285,6 +293,7 @@ public class DroneController : MonoBehaviour
         //Debug.Log("Overall speed" + collisionSpeed.ToString("F2"));
         if(collisionSpeed > 1)
         {
+            anim.SetTrigger("TakeDamage");
             droneHealth -= (int)(collisionSpeed * 5);
             GUICanvas.SetHealth(droneHealth);
         }

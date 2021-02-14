@@ -10,9 +10,13 @@ public class Package : MonoBehaviour
     [SerializeField] private GameObject boxIcon;
     [SerializeField] private float iconMargin;
     [SerializeField] private float minVelocity = 0.1f;
+    [SerializeField] private GameObject deliveredEffect;
+    [SerializeField] private LayerMask groundLayer;
     private GameObject m_BoxIcon;
     private Rigidbody rbody;
     private bool waitingForRest;
+    private bool waitingForContact;
+    
     
     public void Start()
     {
@@ -54,6 +58,7 @@ public class Package : MonoBehaviour
 
     public void OnPickedUp()
     {
+        waitingForContact = false;
         m_BoxIcon.SetActive(false);
         waitingForRest = false;
         if (pl)
@@ -66,14 +71,22 @@ public class Package : MonoBehaviour
     public void OnRelease()
     {
         m_BoxIcon.SetActive(true);
-        waitingForRest = true;
+        //waitingForRest = true;
+        waitingForContact = true;
     }
 
     public void OnRest()
     {
+        Debug.Log("resting");
+        float distanceToDest = Vector3.Distance(transform.position, destination);
+        if (distanceToDest > 20)
+        {
+            return;
+        }
         Destroy(m_BoxIcon);
-        Global.Instance.AddScore(10 - Vector3.Distance(transform.position, destination));
+        Global.Instance.AddScore((20 - distanceToDest) / (10/20));
         Global.Instance.AddPackage();
+        Destroy(GameObject.Instantiate(deliveredEffect, transform.position, Quaternion.identity), 2);
         Destroy(gameObject);
     }
 
@@ -107,6 +120,14 @@ public class Package : MonoBehaviour
                 StartCoroutine(WaitForMotion(0.5f));
             }
         }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+       if (waitingForContact && (other.collider.gameObject.layer== 9))
+       {
+            OnRest();
+       }
     }
 
     public PickupLocation pl;

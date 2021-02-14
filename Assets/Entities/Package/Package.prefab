@@ -145,6 +145,10 @@ MonoBehaviour:
   boxIcon: {fileID: 4851761665695155620, guid: 7fdd91cc750057f48942c9cd631efd95, type: 3}
   iconMargin: 0.1
   minVelocity: 0.1
+  deliveredEffect: {fileID: 3133923696001423120, guid: 2ba5043e68e9f8445a66ca4bcd99c34a, type: 3}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 512
   anchorPoint: {x: 0, y: 0.1, z: 0}
   pl: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
