@@ -66,14 +66,14 @@ PrefabInstance:
     - target: {fileID: -7664728788398519507, guid: eb52c045193183a4e8a43c372789d677, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: -581147257804018764, guid: 1fbfd2d5a03388b4bacfe65a2385fac8, type: 3}
+      objectReference: {fileID: 2100000, guid: de6604810f1fb0d4ebb47e8c398e316d, type: 2}
     - target: {fileID: -3195828791156449804, guid: eb52c045193183a4e8a43c372789d677, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c935a18bb4b272b4fb390f4375f90d7a, type: 2}
     - target: {fileID: 919132149155446097, guid: eb52c045193183a4e8a43c372789d677, type: 3}
       propertyPath: m_Name
-      value: shopflat (1)
+      value: shopflat (1) Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb52c045193183a4e8a43c372789d677, type: 3}
