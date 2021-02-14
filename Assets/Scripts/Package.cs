@@ -117,7 +117,8 @@ public class Package : MonoBehaviour
             return;
         }
         Destroy(m_BoxIcon);
-        Global.Instance.AddScore((20 - distanceToDest) / (10/20));
+        Debug.Log("distanceToDest: " + distanceToDest);
+        Global.Instance.AddScore((20 - distanceToDest) / (10F/20F));
         Global.Instance.AddPackage();
         Destroy(GameObject.Instantiate(deliveredEffect, transform.position, Quaternion.identity), 2);
         Destroy(gameObject);

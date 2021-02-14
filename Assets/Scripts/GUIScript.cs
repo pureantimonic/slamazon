@@ -21,7 +21,7 @@ public class GUIScript : MonoBehaviour
     public GameObject settingPanel;
     public GameObject endPanel;
 
-    public GameObject timeDisplay;
+    public TextMeshProUGUI timeDisplay;
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI PackageText;
 
@@ -52,7 +52,7 @@ public class GUIScript : MonoBehaviour
         secondLeft = 10;
         if(timeDisplay != null)
         {
-            timeDisplay.GetComponent<Text>().text = "0"+ minLeft + ":" + secondLeft;
+            timeDisplay.text = "0"+ minLeft + ":" + secondLeft;
         } 
     }
 
@@ -171,11 +171,11 @@ public class GUIScript : MonoBehaviour
         secondLeft -= 1;
         if (secondLeft < 10)
         {
-            timeDisplay.GetComponent<Text>().text = "0" + minLeft + ":0" + secondLeft;
+            timeDisplay.text = "0" + minLeft + ":0" + secondLeft;
         }
         else
         {
-            timeDisplay.GetComponent<Text>().text = "0" + minLeft + ":" + secondLeft;
+            timeDisplay.text = "0" + minLeft + ":" + secondLeft;
         }
         if(secondLeft == 0)
         {
