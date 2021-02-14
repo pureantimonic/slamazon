@@ -48,8 +48,6 @@ public class GUIScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        minLeft = 1;
-        secondLeft = 10;
         if(timeDisplay != null)
         {
             timeDisplay.text = "0"+ minLeft + ":" + secondLeft;

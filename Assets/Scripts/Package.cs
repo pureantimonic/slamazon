@@ -27,7 +27,15 @@ public class Package : MonoBehaviour
     private int packageType;
     private AudioSource audioSource;
     private AudioSource baseAudioSource;
-    
+    private OrderManager.Order ord;
+
+
+    public void SetOrder(OrderManager.Order col)
+    {
+        destination = col.destination.destinationPoint.position;
+        mainMesh.material.color = col.color;
+        ord = col;
+    }
     public void Start()
     {
         rbody = GetComponent<Rigidbody>();
@@ -39,8 +47,9 @@ public class Package : MonoBehaviour
 
         packageIcon = gameObject.transform.Find("PackageIcon").gameObject;
         destinationIcon = gameObject.transform.Find("DestinationIcon").gameObject;
-        
-        packageIcon.transform.SetParent(iconCanvas.transform, false);
+        packageIcon.SetActive(false);
+        destinationIcon.SetActive(false);
+        //packageIcon.transform.SetParent(iconCanvas.transform, false);
         destinationIcon.transform.SetParent(iconCanvas.transform, false);
 
         Color color = UnityEngine.Random.ColorHSV(0f, 1f, 0.8f, 0.8f, 0.8f, 0.8f);
@@ -92,6 +101,7 @@ public class Package : MonoBehaviour
 
     public void OnPickedUp()
     {
+        destinationIcon.SetActive(true);
         waitingForContact = false;
 
         waitingForRest = false;
@@ -104,21 +114,24 @@ public class Package : MonoBehaviour
 
     public void OnRelease()
     {
+        destinationIcon.SetActive(false);
         //waitingForRest = true;
         waitingForContact = true;
-        waitingForRest = true;
+        //waitingForRest = true;
     }
 
     public void OnRest()
     {
         float distanceToDest = Vector3.Distance(transform.position, destination);
-        if (distanceToDest > 20)
+        Debug.Log(distanceToDest);
+        if (distanceToDest > 10)
         {
             return;
         }
         Destroy(m_BoxIcon);
+        ord.om.CompleteOrder(ord);
         Debug.Log("distanceToDest: " + distanceToDest);
-        Global.Instance.AddScore((20 - distanceToDest) / (10F/20F));
+        Global.Instance.AddScore((10 - distanceToDest) / (10F/10F));
         Global.Instance.AddPackage();
         Destroy(GameObject.Instantiate(deliveredEffect, transform.position, Quaternion.identity), 2);
         Destroy(gameObject);

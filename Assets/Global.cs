@@ -18,11 +18,15 @@ public class Global : MonoBehaviour
     public List<Destination> destinations;
 
     public GameObject[] Packages;
+    public GameObject[] People;
 
     public GUIScript GUICanvas;
 
     public List<AudioClip> baseCollisionClips;
     public List<ListWrapper<AudioClip>> collisionClips;
+
+    public List<PickupLocation> depots;
+    
     // Start is called before the first frame update
     void Awake()
     {
@@ -30,6 +34,12 @@ public class Global : MonoBehaviour
             Instance = this;
 
         destinations = new List<Destination>();
+        depots = new List<PickupLocation>();
+    }
+
+    public void RegisterDepot(PickupLocation pl)
+    {
+        depots.Add(pl);
     }
 
     public void RegisterDestination(Destination dest)
