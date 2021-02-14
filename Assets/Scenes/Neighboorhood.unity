@@ -17947,26 +17947,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 526559146, guid: d020b38f87db43f42b7a33b1aacc947f, type: 3}
-      propertyPath: weight
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 775858735, guid: d020b38f87db43f42b7a33b1aacc947f, type: 3}
       propertyPath: GUICanvas
       value: 
       objectReference: {fileID: 530442415}
     - target: {fileID: 775858735, guid: d020b38f87db43f42b7a33b1aacc947f, type: 3}
-      propertyPath: damageSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 369bb2f87075a5d439b70e4d15de5520, type: 3}
-    - target: {fileID: 775858735, guid: d020b38f87db43f42b7a33b1aacc947f, type: 3}
       propertyPath: destinationEffect
       value: 
       objectReference: {fileID: 289697377}
-    - target: {fileID: 1626950541, guid: d020b38f87db43f42b7a33b1aacc947f, type: 3}
-      propertyPath: sharedProfile
-      value: 
-      objectReference: {fileID: 11400000, guid: 5a3799830fe8cd34a9917f66a6ba7737, type: 2}
     - target: {fileID: 978834960204395461, guid: d020b38f87db43f42b7a33b1aacc947f, type: 3}
       propertyPath: m_Name
       value: DronePlayer

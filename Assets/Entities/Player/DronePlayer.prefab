@@ -1712,6 +1712,7 @@ MonoBehaviour:
   AngularSpeed: 0.01
   modelTransform: {fileID: 4855058527772047991}
   MaxAngAccel: 100
+  MaxHeight: 4.6
   pickupRange: 2
   CannonPower: 600
   packageLayer:
