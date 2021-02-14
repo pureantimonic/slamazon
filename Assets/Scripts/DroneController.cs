@@ -178,6 +178,11 @@ public class DroneController : MonoBehaviour
         ArrowParent.SetActive(true);
         ArrowParent.GetComponentInChildren<MeshRenderer>().material.color = package.GetOrderColor();
         destinationEffect.SetActive(true);
+        ParticleSystem.MainModule mm = destinationEffect.GetComponent<ParticleSystem>().main;
+        ;
+        
+        mm.startColor =
+            new ParticleSystem.MinMaxGradient(package.GetOrderColor());
         destinationEffect.transform.position = package.destination;
         currentPackage = package;
         //package.transform.position = attachBody.transform.position;
