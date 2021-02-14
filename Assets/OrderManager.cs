@@ -62,7 +62,11 @@ public class OrderManager : MonoBehaviour
         int soundIndex = Mathf.Min(consecutiveDeliveries, completedOrderSounds.Count - 1);
         AudioManager.Instance.PlaySound(ord.destination.destinationPoint.position, completedOrderSounds[soundIndex]);
         consecutiveDeliveries++;
-        Destroy(ord.person);
+        if (ord.person)
+        {
+            Destroy(ord.person);
+        }
+        
         ord.UI.OnComplete();
         ongoingOrders.Remove(ord);
     }

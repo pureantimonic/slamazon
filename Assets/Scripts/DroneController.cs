@@ -24,6 +24,7 @@ public class DroneController : MonoBehaviour
     [SerializeField] private Transform shootOrigin;
     [SerializeField] private GameObject destinationEffect;
     [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private GameObject ArrowParent;
     private GameObject DestinationEffect;
 
     [Header("UI")] [SerializeField] private Image pickupHighlight;
@@ -53,6 +54,7 @@ public class DroneController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ArrowParent.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         destinationEffect.SetActive(false);
         targetRotation = transform.rotation;
@@ -94,10 +96,11 @@ public class DroneController : MonoBehaviour
     {
         if (val.Get<float>() < 1)
             return;
-        
+           
         
         if (targetPackage && !currentPackage)
         {
+            
             PickupPackage(targetPackage);
         }else if (currentPackage)
         {
@@ -126,7 +129,8 @@ public class DroneController : MonoBehaviour
 
     public GameObject ReleasePackage()
     {
-        
+     
+        ArrowParent.SetActive(false);
         Rigidbody packBody = currentPackage.GetComponent<Rigidbody>();
         packBody.drag = 0;
         packBody.angularDrag = 0.05f;
@@ -168,6 +172,8 @@ public class DroneController : MonoBehaviour
 
     private void PickupPackage(Package package)
     {
+        ArrowParent.SetActive(true);
+        ArrowParent.GetComponentInChildren<MeshRenderer>().material.color = package.GetOrderColor();
         destinationEffect.SetActive(true);
         destinationEffect.transform.position = package.destination;
         currentPackage = package;
@@ -181,7 +187,7 @@ public class DroneController : MonoBehaviour
         cfj.xMotion = ConfigurableJointMotion.Limited;
         cfj.yMotion = ConfigurableJointMotion.Limited;
         cfj.zMotion = ConfigurableJointMotion.Limited;
-        cfj.linearLimit =  new SoftJointLimit {limit = 0.8f};
+        cfj.linearLimit =  new SoftJointLimit {limit = 1.2f};
         Rigidbody packBody = package.GetComponent<Rigidbody>();
         package.GetComponent<Package>().OnPickedUp(this);
         packBody.drag = 1;
@@ -276,6 +282,7 @@ public class DroneController : MonoBehaviour
 
         if (currentPackage)
         {
+            ArrowParent.transform.rotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(currentPackage.destination - transform.position, Vector3.up), Vector3.up);
             lineRenderer.SetPosition(0, attachBody.position);
             lineRenderer.SetPosition(1, currentPackage.transform.TransformPoint(currentPackage.GetComponent<ConfigurableJoint>().anchor));
         }

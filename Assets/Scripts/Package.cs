@@ -19,8 +19,12 @@ public class Package : MonoBehaviour
     private Rigidbody rbody;
     private bool waitingForRest;
     private bool waitingForContact;
-    
-    
+
+
+    public Color GetOrderColor()
+    {
+        return ord.color;
+    }
     private OrderManager.Order ord;
 
 
@@ -34,6 +38,7 @@ public class Package : MonoBehaviour
 
     public void Start()
     {
+        
         rbody = GetComponent<Rigidbody>();
         iconCanvas = Global.Instance.iconCanvas;
 
@@ -76,7 +81,7 @@ public class Package : MonoBehaviour
        
         obj.transform.position = new Vector3(
             Mathf.Clamp(((screenPoint.x / w) * (w  * (1 - (2 * iconMargin))) + (w * iconMargin)), (w) * iconMargin, (w) * (1f - iconMargin)),
-            h * 0.1f);
+            h * 0.7f);
     }
 
     public void Update()
@@ -152,7 +157,7 @@ public class Package : MonoBehaviour
         
     }
 
-    private void FixedUpdate()
+    /*private void FixedUpdate()
     {
         if (waitingForRest)
         {
@@ -162,7 +167,7 @@ public class Package : MonoBehaviour
                 StartCoroutine(WaitForMotion(0.5f));
             }
         }
-    }
+    }*/
 
     private void OnCollisionEnter(Collision other)
     {
