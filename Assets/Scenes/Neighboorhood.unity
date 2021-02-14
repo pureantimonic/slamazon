@@ -4134,7 +4134,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 0.86404634, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5225,7 +5225,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   ColorModule:
-    enabled: 1
+    enabled: 0
     gradient:
       serializedVersion: 2
       minMaxState: 1
@@ -17947,6 +17947,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 304811863, guid: d020b38f87db43f42b7a33b1aacc947f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 775858735, guid: d020b38f87db43f42b7a33b1aacc947f, type: 3}
       propertyPath: GUICanvas
       value: 
@@ -26788,10 +26792,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4981737484479401717, guid: fc34648a9e98efa4085ad4297b1e588c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -15.013977
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc34648a9e98efa4085ad4297b1e588c, type: 3}
 --- !u!1 &1743663033 stripped
@@ -30268,6 +30268,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 51f664700fa6fff4e917b132380969f4, type: 3}
   - {fileID: 8300000, guid: 86a95b391a3ab2543b62beba15a0922d, type: 3}
   failedOrderSound: {fileID: 8300000, guid: 764ceb7c570f9f54a939c5f91cff6fc8, type: 3}
+  colorOffset: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &2075768724
 PrefabInstance:
   m_ObjectHideFlags: 0
