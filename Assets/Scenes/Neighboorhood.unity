@@ -18033,26 +18033,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 526559146, guid: d020b38f87db43f42b7a33b1aacc947f, type: 3}
-      propertyPath: weight
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 775858735, guid: d020b38f87db43f42b7a33b1aacc947f, type: 3}
       propertyPath: GUICanvas
       value: 
       objectReference: {fileID: 530442415}
     - target: {fileID: 775858735, guid: d020b38f87db43f42b7a33b1aacc947f, type: 3}
-      propertyPath: damageSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 369bb2f87075a5d439b70e4d15de5520, type: 3}
-    - target: {fileID: 775858735, guid: d020b38f87db43f42b7a33b1aacc947f, type: 3}
       propertyPath: destinationEffect
       value: 
       objectReference: {fileID: 289697377}
-    - target: {fileID: 1626950541, guid: d020b38f87db43f42b7a33b1aacc947f, type: 3}
-      propertyPath: sharedProfile
-      value: 
-      objectReference: {fileID: 11400000, guid: 5a3799830fe8cd34a9917f66a6ba7737, type: 2}
     - target: {fileID: 978834960204395461, guid: d020b38f87db43f42b7a33b1aacc947f, type: 3}
       propertyPath: m_Name
       value: DronePlayer
@@ -26885,6 +26873,10 @@ PrefabInstance:
     - target: {fileID: 2607085936056744891, guid: fc34648a9e98efa4085ad4297b1e588c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4981737484479401717, guid: fc34648a9e98efa4085ad4297b1e588c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -15.013977
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc34648a9e98efa4085ad4297b1e588c, type: 3}
