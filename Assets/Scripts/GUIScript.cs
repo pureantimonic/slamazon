@@ -25,10 +25,11 @@ public class GUIScript : MonoBehaviour
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI PackageText;
 
-    public TextMeshProUGUI EndWinLose;
+    public Image EndWinLose;
+    public Sprite EndWin;
+    public Sprite EndLose;
     public TextMeshProUGUI EndScoreText;
     public TextMeshProUGUI EndSPackageText;
-    public TextMeshProUGUI EndHealthText;
 
 
     public int minLeft = 1;
@@ -94,16 +95,15 @@ public class GUIScript : MonoBehaviour
 
         if(droneHealth <= 0)
         {
-            EndWinLose.text = "LOSE";
+            EndWinLose.sprite = EndLose;
         }
         else
         {
-            EndWinLose.text = "WIN";
+            EndWinLose.sprite = EndWin;
         }
 
         EndScoreText.text = gameScore.ToString();
         EndSPackageText.text = deliveredPackage.ToString();
-        EndHealthText.text = droneHealth.ToString();
 
 
 
@@ -153,6 +153,13 @@ public class GUIScript : MonoBehaviour
         Time.timeScale = 1f;
         gameState = State.Playing;
         SceneManager.LoadScene(1);
+    }
+
+    public void RestartScene()
+    {
+        Time.timeScale = 1f;
+        gameState = State.Playing;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void QuitGame()
