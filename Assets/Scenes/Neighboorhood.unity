@@ -32560,17 +32560,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cbd793f1a05bed409d50957def74628, type: 3}
---- !u!114 &1097055205 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1209280010328745507, guid: fc34648a9e98efa4085ad4297b1e588c, type: 3}
-  m_PrefabInstance: {fileID: 1741185554}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1107520263
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39098,6 +39087,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1209280010674440214, guid: fc34648a9e98efa4085ad4297b1e588c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 30.999023
+      objectReference: {fileID: 0}
     - target: {fileID: 1209280011179046434, guid: fc34648a9e98efa4085ad4297b1e588c, type: 3}
       propertyPath: droneContriller
       value: 
@@ -40085,11 +40078,31 @@ MonoBehaviour:
   iconCanvas: {fileID: 1128564463}
   Score: 0
   PackageDeliverd: 0
-  ScoreText: {fileID: 1097055205}
-  PackageText: {fileID: 2116027152}
   destinations: []
   Packages:
   - {fileID: 4382678428840975614, guid: bf42765c07c99724eb37d8ab771c8f47, type: 3}
+  GUICanvas: {fileID: 0}
+  baseCollisionClips:
+  - {fileID: 8300000, guid: ce2292bc3728ce445934f36661cae101, type: 3}
+  - {fileID: 8300000, guid: 329f02170bc096a4db93bfef1d9a9c68, type: 3}
+  - {fileID: 8300000, guid: 6491c957288142d48b1be5d86841c19c, type: 3}
+  - {fileID: 8300000, guid: 7a3965d59b4b2ea4184748528f1ee5da, type: 3}
+  - {fileID: 8300000, guid: 58d2b6dd4956df84b91d8ca374a8a521, type: 3}
+  - {fileID: 8300000, guid: 7294b1da39bb07041a66b8e724c692a6, type: 3}
+  - {fileID: 8300000, guid: de782adb34ad6a440a43778492b199b7, type: 3}
+  collisionClips:
+  - innerList:
+    - {fileID: 8300000, guid: 03ab4bbcb8449584e8e5c6fc78c86f92, type: 3}
+    - {fileID: 8300000, guid: 6c8dca0867e3b7345b398d0fa0eea9f5, type: 3}
+    - {fileID: 8300000, guid: 1e5dba78a3b5a2a4fa8dee337fa88ba1, type: 3}
+    - {fileID: 8300000, guid: 3f2cb11c832403949a6aa5f5149ace3d, type: 3}
+    - {fileID: 8300000, guid: d933496c21b5fb14dafea989e2399706, type: 3}
+    - {fileID: 8300000, guid: 21b968f2f99247d4db6d535bd2cefb4f, type: 3}
+    - {fileID: 8300000, guid: 737dbaa52be260b4fa0ac838fe2bf13f, type: 3}
+    - {fileID: 8300000, guid: 186561a317be3ef4b98c134ae5123ad9, type: 3}
+    - {fileID: 8300000, guid: 53c07507d33d29643a8332fb7e33cf93, type: 3}
+    - {fileID: 8300000, guid: 0f866ef584dec8241a06bdd0c4640c4d, type: 3}
+    - {fileID: 8300000, guid: aca2b5fd64ab77046bb01b4bc16462a8, type: 3}
 --- !u!4 &2071965679
 Transform:
   m_ObjectHideFlags: 0
@@ -40333,17 +40346,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cbd793f1a05bed409d50957def74628, type: 3}
---- !u!114 &2116027152 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1209280010083237954, guid: fc34648a9e98efa4085ad4297b1e588c, type: 3}
-  m_PrefabInstance: {fileID: 1741185554}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2140436864
 PrefabInstance:
   m_ObjectHideFlags: 0
