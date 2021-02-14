@@ -146,15 +146,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c15715faba5f75e42a6627d78ee2e46b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconMargin: 0.1
+  iconMargin: 0.2
   minVelocity: 0.1
   deliveredEffect: {fileID: 3133923696001423120, guid: 2ba5043e68e9f8445a66ca4bcd99c34a, type: 3}
   groundLayer:
     serializedVersion: 2
     m_Bits: 512
-  velocityThreshold: 0.2
-  baseProbability: 1
-  specialChance: 0.1
+  dc: {fileID: 0}
   anchorPoint: {x: 0, y: 0.1, z: 0}
   pl: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
@@ -380,6 +378,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c79aaa1bb1f46e04ab3fe233ed279d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocityThreshold: 5
+  baseProbability: 0.9
+  specialChance: 0.2
 --- !u!1 &6071647262815430994
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,7 +560,7 @@ PrefabInstance:
     - target: {fileID: 4851761665695155622, guid: 7fdd91cc750057f48942c9cd631efd95, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 841c8cba48b526d41a75f8236e3b844d, type: 3}
+      objectReference: {fileID: 21300000, guid: df28e28f877a78e4da4eac0d5d2c3cf2, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fdd91cc750057f48942c9cd631efd95, type: 3}
 --- !u!224 &8609578853253315956 stripped
