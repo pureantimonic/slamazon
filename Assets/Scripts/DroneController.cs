@@ -60,7 +60,7 @@ public class DroneController : MonoBehaviour
         targetRotation = transform.rotation;
         initialRotation = modelTransform.localRotation;
         rbody = GetComponent<Rigidbody>();
-        pickupHighlight.enabled = false;
+        pickupHighlight.gameObject.SetActive(false);
         anim = GetComponent<Animator>();
 
         GUICanvas.SetMaxHealth(droneHealth);
@@ -260,17 +260,17 @@ public class DroneController : MonoBehaviour
                 Rect guiRect = GUIRect(pickupHighlight.canvas, colls[0].GetComponent<Package>().mainMesh.gameObject);
                 pickupHighlight.rectTransform.localPosition = guiRect.center;
                 pickupHighlight.rectTransform.sizeDelta = new Vector2(guiRect.width, guiRect.height);
-                pickupHighlight.enabled = true;
+                pickupHighlight.gameObject.SetActive(true); 
                 targetPackage = colls[0].gameObject.GetComponent<Package>();
             }
             else if(pickupHighlight.enabled)
             {
-                pickupHighlight.enabled = false;
+                pickupHighlight.gameObject.SetActive(false); 
                 targetPackage = null;
             }
         }else if(pickupHighlight.enabled)
         {
-            pickupHighlight.enabled = false;
+            pickupHighlight.gameObject.SetActive(false);
             targetPackage = null;
         }
 
