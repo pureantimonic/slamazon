@@ -18,6 +18,7 @@ public class Global : MonoBehaviour
     public List<Destination> destinations;
 
     public GameObject[] Packages;
+    public GameObject[] People;
 
     public GUIScript GUICanvas;
 
@@ -28,6 +29,12 @@ public class Global : MonoBehaviour
             Instance = this;
 
         destinations = new List<Destination>();
+        depots = new List<PickupLocation>();
+    }
+
+    public void RegisterDepot(PickupLocation pl)
+    {
+        depots.Add(pl);
     }
 
     public void RegisterDestination(Destination dest)

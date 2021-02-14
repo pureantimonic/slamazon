@@ -15,7 +15,6 @@ public class DroneController : MonoBehaviour
     [SerializeField] private float AngularSpeed = 1;
     [SerializeField] private Transform modelTransform;
     [SerializeField] private float MaxAngAccel = 1;
-    [SerializeField] private float MaxAngle = 15;
 
     [Header("Gameplay")] [SerializeField] private float pickupRange = 4;
     [SerializeField] private float CannonPower = 5;
@@ -134,7 +133,7 @@ public class DroneController : MonoBehaviour
         destinationEffect.SetActive(false);
         lineRenderer.enabled = false;
         packBody.GetComponent<Package>().OnRelease();
-        packBody.velocity = rbody.velocity;
+        
         return packBody.gameObject;
         
     }
@@ -269,7 +268,7 @@ public class DroneController : MonoBehaviour
 
         if (firing)
         {
-            firePower = ((-Mathf.Cos((Time.time - startFireTime) * 3)) + 1) / 2;
+            firePower = ((-Mathf.Cos((Time.time - startFireTime) * 6)) + 1) / 2;
             shootUI.SetShootPower(firePower);
         }
 
