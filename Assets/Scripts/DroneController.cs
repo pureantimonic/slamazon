@@ -32,6 +32,7 @@ public class DroneController : MonoBehaviour
     [SerializeField] private ShootUI shootUI;
 
     [Header("Sound")] [SerializeField] private AudioClip damageSound;
+    [SerializeField] AudioClip cannonSound;
     
     private Quaternion initialRotation;
     private Vector2 latInput;
@@ -166,6 +167,7 @@ public class DroneController : MonoBehaviour
             package.transform.position = shootOrigin.position;
             Rigidbody packBody = package.GetComponent<Rigidbody>();
             packBody.AddForce(Camera.main.transform.forward * power * CannonPower, ForceMode.Impulse);
+            AudioManager.Instance.PlaySound(gameObject.transform, cannonSound);
         }
        
         
