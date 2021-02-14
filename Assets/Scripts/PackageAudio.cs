@@ -53,8 +53,7 @@ public class PackageAudio : MonoBehaviour
             if (baseSource.enabled)
             {
                 baseSource.PlayOneShot(
-                    AudioManager.Instance.baseCollisionClips[Random.Range(0, AudioManager.Instance.baseCollisionClips.Count)],
-                    0.5f
+                    AudioManager.Instance.baseCollisionClips[Random.Range(0, AudioManager.Instance.baseCollisionClips.Count)]
                 );
             }
         }

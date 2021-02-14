@@ -15,9 +15,11 @@ public class AudioManager : MonoBehaviour
 
     public List<AudioClip> baseCollisionClips;
     public List<ListWrapper<AudioClip>> collisionClips;
-    public float globalPitch;
+    public float globalPitch = 1f;
     public AudioSource source;
     private bool timeSlowed = false;
+
+    public BackgroundMusic bgm;
 
     void Awake()
     {
@@ -30,7 +32,8 @@ public class AudioManager : MonoBehaviour
 
     void Update()
     {
-        globalPitch = Time.deltaTime / Time.unscaledDeltaTime;
+        var idealPitch = Time.deltaTime / Time.unscaledDeltaTime;
+        globalPitch += (idealPitch - globalPitch) * 10f * Time.unscaledDeltaTime;
         if (timeSlowed && !source.isPlaying)
         {
             source.clip = heartbeatSound;
@@ -41,6 +44,7 @@ public class AudioManager : MonoBehaviour
     public void TimeSlow(bool starting)
     {
         if (timeSlowed == starting) return;
+        bgm.TimeSlow(starting);
         timeSlowed = starting;
         source.clip = starting ? slowDownSound : speedUpSound;
         source.volume = timeSlowVolume;
