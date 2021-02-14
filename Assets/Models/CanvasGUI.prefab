@@ -33,7 +33,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 602, y: -106}
+  m_AnchoredPosition: {x: 602, y: 199}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &803519472
@@ -751,7 +751,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1209280009830613699
 RectTransform:
   m_ObjectHideFlags: 0
@@ -843,7 +843,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -60.776, y: -69.7}
+  m_AnchoredPosition: {x: -1185, y: -89.5}
   m_SizeDelta: {x: 111.28, y: 39.173}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1209280010083237953
@@ -977,7 +977,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -60.776, y: -23.199997}
+  m_AnchoredPosition: {x: -1185, y: -43}
   m_SizeDelta: {x: 111.28, y: 39.173}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1209280010328745506
@@ -1111,7 +1111,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -144, y: -69.7}
+  m_AnchoredPosition: {x: -1268.224, y: -89.5}
   m_SizeDelta: {x: 39.173004, y: 39.173004}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1209280010507372047
@@ -1186,7 +1186,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -144, y: -23.2}
+  m_AnchoredPosition: {x: -1268.224, y: -43}
   m_SizeDelta: {x: 39.173004, y: 39.173004}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1209280011097634873
@@ -1354,8 +1354,8 @@ MonoBehaviour:
   EndScoreText: {fileID: 8592182182478780223}
   EndSPackageText: {fileID: 5290203838675980910}
   EndHealthText: {fileID: 8297402239274577831}
-  minLeft: 1
-  secondLeft: 30
+  minLeft: 5
+  secondLeft: 1
   timeGone: 0
   droneHealth: 0
   gameScore: 0
@@ -4834,7 +4834,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -60.776, y: 31}
+  m_AnchoredPosition: {x: -652, y: 837}
   m_SizeDelta: {x: 111.28, y: 39.173004}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3602078717196358921
@@ -4969,7 +4969,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 57.96222}
+  m_AnchoredPosition: {x: 0, y: 898}
   m_SizeDelta: {x: 200, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1080062087902419908

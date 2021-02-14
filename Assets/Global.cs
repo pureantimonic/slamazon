@@ -71,6 +71,12 @@ public class Global : MonoBehaviour
     {
         return Packages[Random.Range(0, Packages.Length)];
     }
+
+    public GameObject GetRandomPerson()
+    {
+        return People[Random.Range(0, People.Length)];
+    }
+    
     
     // Update is called once per frame
     void Update()

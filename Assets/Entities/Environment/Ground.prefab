@@ -62,10 +62,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Road
       objectReference: {fileID: 0}
-    - target: {fileID: 2695236027907728196, guid: dfc12df1918ed3145a92d780b0562d3d, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 3327234678224992766, guid: dfc12df1918ed3145a92d780b0562d3d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -110,10 +106,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4496732709571904145, guid: dfc12df1918ed3145a92d780b0562d3d, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: dcebdf7737a345a49a2d9715275d357c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfc12df1918ed3145a92d780b0562d3d, type: 3}
 --- !u!4 &2935975567903089789 stripped
@@ -1493,10 +1485,6 @@ PrefabInstance:
     - target: {fileID: 6432251094473102419, guid: a89887aad371a66439c3c2253986b462, type: 3}
       propertyPath: m_Name
       value: Grass
-      objectReference: {fileID: 0}
-    - target: {fileID: 6432251094473102419, guid: a89887aad371a66439c3c2253986b462, type: 3}
-      propertyPath: m_Layer
-      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a89887aad371a66439c3c2253986b462, type: 3}

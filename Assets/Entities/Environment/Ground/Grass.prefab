@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7325097594018890060}
   - component: {fileID: 4774675673530791302}
   - component: {fileID: 664958679}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Grass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,5 +93,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 1.9999998, z: 0.018894423}
-  m_Center: {x: -1.2105905e-17, y: -0.0000019073489, z: -0.009447209}
+  m_Size: {x: 2, y: 1.9999998, z: 0.3110638}
+  m_Center: {x: -1.3403913e-16, y: -0.0000019073486, z: -0.15553206}

@@ -14,6 +14,7 @@ public class Package : MonoBehaviour
     [SerializeField] private float minVelocity = 0.1f;
     [SerializeField] private GameObject deliveredEffect;
     [SerializeField] private LayerMask groundLayer;
+    public DroneController dc;
     private GameObject m_BoxIcon;
     private Rigidbody rbody;
     private bool waitingForRest;
@@ -28,6 +29,7 @@ public class Package : MonoBehaviour
         destination = col.destination.destinationPoint.position;
         mainMesh.material.color = col.color;
         ord = col;
+
     }
 
     public void Start()
@@ -37,15 +39,24 @@ public class Package : MonoBehaviour
 
         packageIcon = gameObject.transform.Find("PackageIcon").gameObject;
         destinationIcon = gameObject.transform.Find("DestinationIcon").gameObject;
-        packageIcon.SetActive(false);
+        //packageIcon.SetActive(false);
         destinationIcon.SetActive(false);
-        //packageIcon.transform.SetParent(iconCanvas.transform, false);
+        packageIcon.transform.SetParent(iconCanvas.transform, false);
         destinationIcon.transform.SetParent(iconCanvas.transform, false);
 
-        Color color = UnityEngine.Random.ColorHSV(0f, 1f, 0.8f, 0.8f, 0.8f, 0.8f);
-        packageIcon.GetComponent<Image>().color = color;
-        destinationIcon.GetComponent<Image>().color = color;
+        packageIcon.GetComponent<Image>().color = ord.color;
+        destinationIcon.GetComponent<Image>().color = ord.color;
+        
 
+    }
+
+    public void DestroyPackage()
+    {
+        if (destinationIcon.activeSelf)
+        {
+            dc.ReleasePackage();
+            Destroy(gameObject);
+        }
     }
 
     public void UpdateIcon(Vector3 position, GameObject obj)
@@ -84,6 +95,7 @@ public class Package : MonoBehaviour
     public void OnPickedUp()
     {
         destinationIcon.SetActive(true);
+        packageIcon.SetActive(false);
         waitingForContact = false;
 
         waitingForRest = false;
@@ -97,6 +109,7 @@ public class Package : MonoBehaviour
     public void OnRelease()
     {
         destinationIcon.SetActive(false);
+        packageIcon.SetActive(true);
         //waitingForRest = true;
         waitingForContact = true;
         //waitingForRest = true;
@@ -105,14 +118,12 @@ public class Package : MonoBehaviour
     public void OnRest()
     {
         float distanceToDest = Vector3.Distance(transform.position, destination);
-        Debug.Log(distanceToDest);
         if (distanceToDest > 10)
         {
             return;
         }
         Destroy(m_BoxIcon);
         ord.om.CompleteOrder(ord);
-        Debug.Log("distanceToDest: " + distanceToDest);
         Global.Instance.AddScore((10 - distanceToDest) / (10F/10F));
         Global.Instance.AddPackage();
         Destroy(GameObject.Instantiate(deliveredEffect, transform.position, Quaternion.identity), 2);

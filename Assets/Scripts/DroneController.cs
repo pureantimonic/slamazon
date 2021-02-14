@@ -122,7 +122,7 @@ public class DroneController : MonoBehaviour
         
     }
 
-    private GameObject ReleasePackage()
+    public GameObject ReleasePackage()
     {
         
         Rigidbody packBody = currentPackage.GetComponent<Rigidbody>();

@@ -9,7 +9,7 @@ public class OrderManager : MonoBehaviour
     [SerializeField] private GameObject orderUIPrefab;
     [SerializeField] private Transform orderUIParent;
     
-    public struct Order
+    public class Order
     {
         public OrderManager om;
         public Destination destination;
@@ -17,6 +17,8 @@ public class OrderManager : MonoBehaviour
         public float startTime;
         public OrderUI UI;
         public bool spawned;
+        public GameObject person;
+        public GameObject package;
     }
 
     public List<Order> ongoingOrders;
@@ -40,8 +42,8 @@ public class OrderManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(5,7));
-            if (ongoingOrders.Count < 8)
+            yield return new WaitForSeconds(Random.Range(10,15));
+            if (ongoingOrders.Count < 5)
             {
                 StartRandomOrder();
             }
@@ -50,6 +52,7 @@ public class OrderManager : MonoBehaviour
 
     public void CompleteOrder(Order ord)
     {
+        Destroy(ord.person);
         ord.UI.OnComplete();
         ongoingOrders.Remove(ord);
     }
@@ -62,6 +65,9 @@ public class OrderManager : MonoBehaviour
         newOrder.destination = Global.Instance.GetRandomDestination();
         newOrder.startTime = Time.time;
         newOrder.color = UnityEngine.Random.ColorHSV(0f, 1f, 0.8f, 1, 0.9f, 0.9f);
+        newOrder.person = GameObject.Instantiate(Global.Instance.GetRandomPerson());
+        newOrder.person.transform.position = newOrder.destination.destinationPoint.position;
+        newOrder.person.transform.rotation = newOrder.destination.destinationPoint.rotation;
         GameObject uiOrder = GameObject.Instantiate(orderUIPrefab, orderUIParent);
         newOrder.UI = uiOrder.GetComponent<OrderUI>();
         newOrder.UI.SetColor(newOrder.color);
@@ -71,7 +77,7 @@ public class OrderManager : MonoBehaviour
             {
                 newOrder.spawned = true;
                 pl.SetOrderManager(this);
-                pl.SpawnPackage(newOrder);
+                pl.DoSpawnPackage(newOrder);
                 break;
             }
         }
@@ -85,7 +91,7 @@ public class OrderManager : MonoBehaviour
             if (!ord.spawned)
             {
                 pl.SetOrderManager(this);
-                pl.SpawnPackage(ord);
+                pl.DoSpawnPackage(ord);
                 break;
             }
         }
@@ -101,6 +107,11 @@ public class OrderManager : MonoBehaviour
             ord.UI.SetTimeRemaining(timeRemainingNorm);
             if (timeRemainingNorm < 0)
             {
+                if (ord.package)
+                {
+                    ord.package.GetComponent<Package>().DestroyPackage();
+                }
+                Destroy(ord.person);
                 ord.UI.OnFail();
                 ongoingOrders.RemoveAt(i);
             }
