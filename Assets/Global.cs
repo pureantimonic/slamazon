@@ -22,6 +22,8 @@ public class Global : MonoBehaviour
 
     public GUIScript GUICanvas;
 
+    public List<PickupLocation> depots;
+    
     // Start is called before the first frame update
     void Awake()
     {
