@@ -17586,6 +17586,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopSloped (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 4240661788578641051, guid: 89d470519f2e3964785c52e37a05a0a6, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89d470519f2e3964785c52e37a05a0a6, type: 3}
 --- !u!1001 &929120469
@@ -21710,6 +21714,10 @@ PrefabInstance:
     - target: {fileID: 824300687301190601, guid: 89d470519f2e3964785c52e37a05a0a6, type: 3}
       propertyPath: m_Name
       value: ShopSloped (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4240661788578641051, guid: 89d470519f2e3964785c52e37a05a0a6, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89d470519f2e3964785c52e37a05a0a6, type: 3}
@@ -33168,6 +33176,14 @@ PrefabInstance:
     - target: {fileID: 2405501274585257730, guid: 168230425987df34db43de378600c34c, type: 3}
       propertyPath: m_Name
       value: Borders
+      objectReference: {fileID: 0}
+    - target: {fileID: 2405501274585257740, guid: 168230425987df34db43de378600c34c, type: 3}
+      propertyPath: m_Size.x
+      value: 1.6060393
+      objectReference: {fileID: 0}
+    - target: {fileID: 2405501274585257740, guid: 168230425987df34db43de378600c34c, type: 3}
+      propertyPath: m_Center.x
+      value: -33.601875
       objectReference: {fileID: 0}
     - target: {fileID: 2405501274585257743, guid: 168230425987df34db43de378600c34c, type: 3}
       propertyPath: m_RootOrder
