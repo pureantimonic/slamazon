@@ -15,6 +15,7 @@ public class DroneController : MonoBehaviour
     [SerializeField] private float AngularSpeed = 1;
     [SerializeField] private Transform modelTransform;
     [SerializeField] private float MaxAngAccel = 1;
+    [SerializeField] private float MaxHeight = 4.5f;
 
     [Header("Gameplay")] [SerializeField] private float pickupRange = 4;
     [SerializeField] private float CannonPower = 5;
@@ -251,7 +252,11 @@ public class DroneController : MonoBehaviour
 
     public void Update()
     {
-        transform.position += Vector3.up * (vertInput * Time.deltaTime);
+        if (transform.position.y >= MaxHeight)
+        {
+            vertInput = Mathf.Min(0, vertInput);
+        }
+        transform.position += Vector3.up * (vertInput * Time.deltaTime * 1.3f);
         camView.localRotation = Quaternion.Euler(lookAngleY, 0, 0);
         Collider[] colls = new Collider[5];
         if (!currentPackage)

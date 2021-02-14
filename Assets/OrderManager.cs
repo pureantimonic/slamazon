@@ -66,7 +66,6 @@ public class OrderManager : MonoBehaviour
         {
             Destroy(ord.person);
         }
-        
         ord.UI.OnComplete();
         ongoingOrders.Remove(ord);
     }
@@ -122,8 +121,10 @@ public class OrderManager : MonoBehaviour
             ord.UI.SetTimeRemaining(timeRemainingNorm);
             if (timeRemainingNorm < 0)
             {
+                Debug.Log(ord.package);
                 if (ord.package)
                 {
+                    
                     ord.package.GetComponent<Package>().DestroyPackage();
                 }
                 Destroy(ord.person);
