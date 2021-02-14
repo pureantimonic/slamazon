@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    
     public static AudioManager Instance;
+    public GameObject temporarySound;
 
     public AudioClip slowDownSound;
     public AudioClip speedUpSound;
@@ -45,5 +47,35 @@ public class AudioManager : MonoBehaviour
         source.Play();
     }
 
+    public void PlaySound(
+        Vector3 position,
+        AudioClip clip,
+        float _pitch = 1.0f,
+        float volume = 1.0f)
+    {
+        var newSound = Instantiate(temporarySound);
+        newSound.transform.position = position;
+        var newSoundScript = newSound.GetComponent<TemporarySound>();
+
+        newSoundScript.clip = clip;
+        newSoundScript.pitch = _pitch;
+        newSoundScript.volume = volume;
+
+    }
+    
+    public void PlaySound(
+        Transform _transform,
+        AudioClip clip,
+        float _pitch = 1.0f,
+        float volume = 1.0f)
+    {
+        var newSound = Instantiate(temporarySound, _transform, false);
+        var newSoundScript = newSound.GetComponent<TemporarySound>();
+
+        newSoundScript.clip = clip;
+        newSoundScript.pitch = _pitch;
+        newSoundScript.volume = volume;
+
+    }
 }
 

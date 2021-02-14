@@ -28,6 +28,8 @@ public class DroneController : MonoBehaviour
 
     [Header("UI")] [SerializeField] private Image pickupHighlight;
     [SerializeField] private ShootUI shootUI;
+
+    [Header("Sound")] [SerializeField] private AudioClip damageSound;
     
     private Quaternion initialRotation;
     private Vector2 latInput;
@@ -295,6 +297,7 @@ public class DroneController : MonoBehaviour
         if(collisionSpeed > 1)
         {
             anim.SetTrigger("TakeDamage");
+            AudioManager.Instance.PlaySound(transform, damageSound);
             droneHealth -= (int)(collisionSpeed * 5);
             GUICanvas.SetHealth(droneHealth);
         }

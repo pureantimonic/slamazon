@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6515633459398611277
+--- !u!1 &8530781275636651680
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 373118041456861805}
-  - component: {fileID: 8931949458566598271}
-  - component: {fileID: 7852528088769531721}
+  - component: {fileID: 6006355928698730335}
+  - component: {fileID: 669556403125075167}
+  - component: {fileID: 5252310337774563040}
   m_Layer: 0
-  m_Name: AudioManager
+  m_Name: TemporarySound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &373118041456861805
+--- !u!4 &6006355928698730335
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6515633459398611277}
+  m_GameObject: {fileID: 8530781275636651680}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,18 +32,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &8931949458566598271
+--- !u!82 &669556403125075167
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6515633459398611277}
+  m_GameObject: {fileID: 8530781275636651680}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -88,7 +88,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.665
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -128,43 +128,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7852528088769531721
+--- !u!114 &5252310337774563040
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6515633459398611277}
+  m_GameObject: {fileID: 8530781275636651680}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a387d965a5ce3c47a88d8b5f49c50d3, type: 3}
+  m_Script: {fileID: 11500000, guid: 55eb89ab85d9945469814bc61cee779b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  temporarySound: {fileID: 8530781275636651680, guid: 1bbf84d12ddbe954ea6e160488d861a6, type: 3}
-  slowDownSound: {fileID: 8300000, guid: e7d49954a324b304f97aa609a2d576da, type: 3}
-  speedUpSound: {fileID: 8300000, guid: 148d898887ab9b441ab0ae10ee064529, type: 3}
-  heartbeatSound: {fileID: 8300000, guid: 568db126eee30414fa0174ce1bd8605d, type: 3}
-  timeSlowVolume: 0.5
-  baseCollisionClips:
-  - {fileID: 8300000, guid: ce2292bc3728ce445934f36661cae101, type: 3}
-  - {fileID: 8300000, guid: 329f02170bc096a4db93bfef1d9a9c68, type: 3}
-  - {fileID: 8300000, guid: 6491c957288142d48b1be5d86841c19c, type: 3}
-  - {fileID: 8300000, guid: 7a3965d59b4b2ea4184748528f1ee5da, type: 3}
-  - {fileID: 8300000, guid: 58d2b6dd4956df84b91d8ca374a8a521, type: 3}
-  - {fileID: 8300000, guid: 7294b1da39bb07041a66b8e724c692a6, type: 3}
-  - {fileID: 8300000, guid: de782adb34ad6a440a43778492b199b7, type: 3}
-  collisionClips:
-  - innerList:
-    - {fileID: 8300000, guid: 03ab4bbcb8449584e8e5c6fc78c86f92, type: 3}
-    - {fileID: 8300000, guid: 6c8dca0867e3b7345b398d0fa0eea9f5, type: 3}
-    - {fileID: 8300000, guid: 1e5dba78a3b5a2a4fa8dee337fa88ba1, type: 3}
-    - {fileID: 8300000, guid: 3f2cb11c832403949a6aa5f5149ace3d, type: 3}
-    - {fileID: 8300000, guid: d933496c21b5fb14dafea989e2399706, type: 3}
-    - {fileID: 8300000, guid: 21b968f2f99247d4db6d535bd2cefb4f, type: 3}
-    - {fileID: 8300000, guid: 737dbaa52be260b4fa0ac838fe2bf13f, type: 3}
-    - {fileID: 8300000, guid: 186561a317be3ef4b98c134ae5123ad9, type: 3}
-    - {fileID: 8300000, guid: 53c07507d33d29643a8332fb7e33cf93, type: 3}
-    - {fileID: 8300000, guid: 0f866ef584dec8241a06bdd0c4640c4d, type: 3}
-    - {fileID: 8300000, guid: aca2b5fd64ab77046bb01b4bc16462a8, type: 3}
-  globalPitch: 0
-  source: {fileID: 0}
+  clip: {fileID: 0}
+  volume: 0
+  pitch: 0

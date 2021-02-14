@@ -1,13 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
+using Random = UnityEngine.Random;
 
 public class OrderManager : MonoBehaviour
 {
     [SerializeField] private float orderTime;
     [SerializeField] private GameObject orderUIPrefab;
     [SerializeField] private Transform orderUIParent;
+
+    [Header("Sound")] [SerializeField] private AudioClip newOrderSound;
+    [SerializeField] private List<AudioClip> completedOrderSounds;
+    [SerializeField] private AudioClip failedOrderSound;
+    private int consecutiveDeliveries = 0;
     
     public class Order
     {
@@ -52,6 +59,9 @@ public class OrderManager : MonoBehaviour
 
     public void CompleteOrder(Order ord)
     {
+        int soundIndex = Mathf.Min(consecutiveDeliveries, completedOrderSounds.Count - 1);
+        AudioManager.Instance.PlaySound(ord.destination.destinationPoint.position, completedOrderSounds[soundIndex]);
+        consecutiveDeliveries++;
         Destroy(ord.person);
         ord.UI.OnComplete();
         ongoingOrders.Remove(ord);
@@ -82,6 +92,7 @@ public class OrderManager : MonoBehaviour
             }
         }
         ongoingOrders.Add(newOrder);
+        AudioManager.Instance.PlaySound(Camera.main.transform, newOrderSound);
     }
 
     public void OnOpenLocation(PickupLocation pl)
@@ -113,6 +124,8 @@ public class OrderManager : MonoBehaviour
                 }
                 Destroy(ord.person);
                 ord.UI.OnFail();
+                consecutiveDeliveries = 0;
+                AudioManager.Instance.PlaySound(Camera.main.transform, failedOrderSound);
                 ongoingOrders.RemoveAt(i);
             }
             

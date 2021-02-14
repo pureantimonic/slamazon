@@ -20556,6 +20556,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 530442415}
     - target: {fileID: 775858735, guid: d020b38f87db43f42b7a33b1aacc947f, type: 3}
+      propertyPath: damageSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 369bb2f87075a5d439b70e4d15de5520, type: 3}
+    - target: {fileID: 775858735, guid: d020b38f87db43f42b7a33b1aacc947f, type: 3}
       propertyPath: destinationEffect
       value: 
       objectReference: {fileID: 289697377}
@@ -30340,6 +30344,13 @@ MonoBehaviour:
   orderTime: 60
   orderUIPrefab: {fileID: 3516185688900096140, guid: 3e8ccf0c29ce98c4694304cd1170df93, type: 3}
   orderUIParent: {fileID: 803519471}
+  newOrderSound: {fileID: 8300000, guid: 6be5c74f1c3e868469d52aec4dbc5581, type: 3}
+  completedOrderSounds:
+  - {fileID: 8300000, guid: d9dfc87b39c79e34ab1513180b38fcd7, type: 3}
+  - {fileID: 8300000, guid: 2e51a2b7e6e15e142b512f7bd9a5e373, type: 3}
+  - {fileID: 8300000, guid: 51f664700fa6fff4e917b132380969f4, type: 3}
+  - {fileID: 8300000, guid: 86a95b391a3ab2543b62beba15a0922d, type: 3}
+  failedOrderSound: {fileID: 8300000, guid: 764ceb7c570f9f54a939c5f91cff6fc8, type: 3}
 --- !u!1001 &2075768724
 PrefabInstance:
   m_ObjectHideFlags: 0
